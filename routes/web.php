@@ -30,6 +30,9 @@ Route::get('/kategori_edit/{id}', 'Admin\CategoryController@edit')->name('katego
 Route::post('/kategori/update', 'Admin\CategoryController@update');
 Route::delete('/kategori/delete', 'Admin\CategoryController@destroy')->name('kategori_delete');
 
+// Product
+Route::get('/produk', 'Admin\ProductController@index');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

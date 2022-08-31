@@ -13,7 +13,7 @@ class CategoryController extends Controller
         $category = category::paginate(10);
 
         // dd($clothes);
-        return view('admin.kategori.kategori', ['category' => $category]);
+        return view('admin.kategori.kategori',['category' => $category]);
     }
     public function store(Request $request)
     {
