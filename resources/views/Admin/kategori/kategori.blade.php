@@ -99,12 +99,12 @@
             <div class="modal-body">
                 <form action="/kategori_store" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
-                    <div class="form-group row">
+                    <!-- <div class="form-group row">
                         <label class="col-form-label col-lg-2">Id</label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control" name="id">
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="form-group row">
                         <label class="col-form-label col-lg-2">Keterangan</label>

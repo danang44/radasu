@@ -19,12 +19,12 @@ class CategoryController extends Controller
     {
         // dd($request);
         $this->validate($request, [
-            'id' => 'required',
+            // 'id' => 'required',
             'keterangan' => 'required',
 
         ]);
         Category::create([
-            'id' => $request->id,
+            // 'id' => $request->id,
             'keterangan' => $request->keterangan,
         ]);
 
