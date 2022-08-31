@@ -57,7 +57,7 @@
 	<div class="page-content">
 
 		<!-- Main sidebar -->
-		<!-- @include('layouts_admin.sidebar') -->
+		@include('layouts_admin.sidebar')
 		<!-- /main sidebar -->
 
 
