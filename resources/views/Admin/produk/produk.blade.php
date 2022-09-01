@@ -54,7 +54,7 @@
                                 <tbody>
                                     @foreach($product as $c)
                                     <tr>
-                                    <td class="pr-2 pl-1 text-center"><img width="80px" src="{{ url('/images/'.$c->gambar) }}"></td>
+                                    <td class="pr-2 pl-1 text-center"><img width="80px" src="{{ url('/data_produk/'.$c->gambar) }}"></td>
                                     <td class="pr-1 pl-1 text-center">{{@$c->category->keterangan}}</td>
                                     <td class="pr-2 pl-2 ">{{$c->nama}} ({{$c->stok}})</td>
                                     <td class="pr-1 pl-1 text-center">Rp {{number_format($c->harga_sewa)}}</td>
@@ -120,7 +120,7 @@
             </div>
 
             <div class="modal-body">
-                <form action="/produk/store" method="POST" enctype="multipart/form-data">
+                <form action="/produk_store" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                     <div class="form-group">
                         <label>Kategori</label>
@@ -150,7 +150,17 @@
                         <label>Harga Sewa</label>
                         <input type="text" required="required" class="form-control" name="harga_sewa" id="harga_sewa">
                     </div>
-                    
+
+                    <div class="form-group">
+                            <div style="position:relative;">
+                                <a class='btn btn-info col-sm-3' href='javascript:;'>
+                                    Choose Image...
+                                    <input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="gambar" size="40" onchange='$("#upload-file-info").html($(this).val());'>
+                                </a>
+                                &nbsp;
+                                <span class='label label-info' id="upload-file-info"></span>
+                            </div>
+                        </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Batal</button>
                         <button type="submit"  value="Upload" class="btn btn-outline-primary">Simpan</button>
