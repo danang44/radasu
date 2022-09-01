@@ -43,4 +43,7 @@ Route::get('/kategori', 'Admin\CategoryController@index')->name('kategori');
 // Product
 Route::get('/produk', 'Admin\ProductController@index');
 Route::post('/produk_store', 'Admin\ProductController@store');
+Route::get('/produk_edit/{id}', 'Admin\ProductController@edit')->name('produk_edit');
+Route::post('/produk/update', 'Admin\ProductController@update');
+Route::delete('/produk/delete', 'Admin\ProductController@destroy')->name('produk_delete');
 });
