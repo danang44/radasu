@@ -3,11 +3,23 @@
 
 @section('content')
 
+<style>
+    label {
+        color: white !important;
+    }
+
+    option {
+        color: black;
+    }
+    .dataTables_info {
+        color: white !important;
+    }
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-12">
             <div class="card mb-5">
-                <div class="page-header-content header-elements-md-inline" style="background-color:#e9ecef">
+                <div class="page-header-content header-elements-md-inline" style="background-color:#011126">
                     <div class="page-title d-flex" style="padding-top:1% !important;padding-bottom:1% !important">
                         <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Home</span> - Data Produk</h4>
                         <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
@@ -30,20 +42,26 @@
                         <div class="pt-2 pr-1 pl-1 table-responsive col-sm-12 ">
                             <table id="table_id" class="table table-striped  table-striped table-border m-1 datatable-scroll-y">
                                 <thead>
-                                    <tr>
-                                        <th>id</th>
-                                        <th>Keterangan</th>
-                                        <th class="text-center">Opsi</th>
+                                <tr class="text-center">
+                                        <th>Gambar</th>
+                                        <th>Jenis</th>
+                                        <th>Nama</th>
+                                        <th>Harga</th>
+                                        <th>Deskripsi</th>
+                                        <th class="col-3 text-center">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($category as $category)
+                                    @foreach($product as $c)
                                     <tr>
-                                        <td>{{$category->id}}</td>
-                                        <td>{{$category->keterangan}}</td>
+                                    <td class="pr-2 pl-1 text-center"><img width="80px" src="{{ url('/images/'.$c->gambar) }}"></td>
+                                    <td class="pr-1 pl-1 text-center">{{@$c->category->keterangan}}</td>
+                                    <td class="pr-2 pl-2 ">{{$c->nama}} ({{$c->stok}})</td>
+                                    <td class="pr-1 pl-1 text-center">Rp {{number_format($c->harga_sewa)}}</td>
+                                    <td class="pr-1 pl-1">{{$c->deskripsi}}</td>
                                         <td class="text-center">
-                                            <button class="btn btn-outline-info editbtn" value="{{$category->id}}"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn btn-outline-danger deletebtn" value="{{$category->id}}"><i class="fa-solid fa-trash"></i></button>
+                                            <button class="btn btn-outline-info editbtn" value="{{$c->id}}"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn btn-outline-danger deletebtn" value="{{$c->id}}"><i class="fa-solid fa-trash"></i></button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -58,6 +76,7 @@
     </div>
 </div>
 
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -75,11 +94,15 @@
 
             $.ajax({
                 type: "GET",
-                url: "/kategori_edit/" + id,
+                url: "/produk_edit/" + id,
                 success: function(response) {
-                    console.log(response.category.keterangan)
-                    $('#keterangan').val(response.category.keterangan);
-                    $('#id').val(response.category.id);
+                    console.log(response.produk.keterangan)
+                    $('#nama').val(response.product.nama);
+                        $('#deskripsi').val(response.product.deskripsi);
+                        $('#stok').val(response.product.stok);
+                        $('#harga_sewa').val(response.product.harga_sewa);
+                        $('#category_id').val(response.product.category_id);
+                        $('#id').val(response.product.id);
                 }
             });
         });
@@ -89,7 +112,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header text-center pb-3" style="background-color:#e9ecef">
+            <div class="modal-header text-center pb-3" style="background-color:#011126">
                 <h5 class="modal-title" id="exampleModalLabel">Tambahkan Data </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -97,24 +120,40 @@
             </div>
 
             <div class="modal-body">
-                <form action="/kategori_store" method="POST" enctype="multipart/form-data">
-                    {{ csrf_field() }}
-                    <!-- <div class="form-group row">
-                        <label class="col-form-label col-lg-2">Id</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="id">
-                        </div>
-                    </div> -->
+                <form action="/produk/store" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                    <div class="form-group">
+                        <label>Kategori</label>
+                        <select id="category_id" name="category_id" class=" col-md-4 form-control form-control-select2" data-container-css-class="border-teal" data-dropdown-css-class="border-teal" required>
+                            <option value=>-- Pilih Kategori --</option>
+                            @foreach($category as $k)
+                            <option value="{{$k->id}}">{{$k->keterangan}}</option>
+                            @endforeach
+                        </select>
 
-                    <div class="form-group row">
-                        <label class="col-form-label col-lg-2">Keterangan</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="keterangan">
-                        </div>
                     </div>
+                    <input type="hidden" id="id" name="id">
+                    <div class="form-group">
+                        <label>Nama</label>
+                        <input type="text" required="required" class="form-control" name="nama" id="nama">
+                    </div>
+                    <div class="form-group">
+                        <label>Deskripsi</label>
+                        <input type="text" required="required" class="form-control" name="deskripsi" id="deskripsi">
+                    </div>
+                    <div class="form-group">
+                        <label>stok</label>
+                        <input type="text" required="required" class="form-control" name="stok" id="stok">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Harga Sewa</label>
+                        <input type="text" required="required" class="form-control" name="harga_sewa" id="harga_sewa">
+                    </div>
+                    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Batal</button>
-                        <button type="submit" value="Upload" class="btn btn-outline-primary">Simpan</button>
+                        <button type="submit"  value="Upload" class="btn btn-outline-primary">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -127,8 +166,8 @@
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header text-center pb-3" style="background-color:#e9ecef">
-                <h5 class="modal-title">Update Produk</h5>
+            <div class="modal-header text-center pb-3" style="background-color:#011126">
+                <h5 class="modal-title">Update Kategori</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -160,7 +199,7 @@
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header text-center pb-3" style="background-color:#e9ecef">
+            <div class="modal-header text-center pb-3" style="background-color:#011126">
                 <h5 class="modal-title">Hapus Data</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

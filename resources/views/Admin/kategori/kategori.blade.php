@@ -3,11 +3,23 @@
 
 @section('content')
 
+<style>
+    label {
+        color: white !important;
+    }
+
+    option {
+        color: black;
+    }
+    .dataTables_info {
+        color: white !important;
+    }
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-12">
             <div class="card mb-5">
-                <div class="page-header-content header-elements-md-inline" style="background-color:#e9ecef">
+                <div class="page-header-content header-elements-md-inline" style="background-color:#011126">
                     <div class="page-title d-flex" style="padding-top:1% !important;padding-bottom:1% !important">
                         <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Home</span> - Data Kategori Produk</h4>
                         <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
@@ -89,7 +101,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header text-center pb-3" style="background-color:#e9ecef">
+            <div class="modal-header text-center pb-3" style="background-color:#011126">
                 <h5 class="modal-title" id="exampleModalLabel">Tambahkan Data </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -127,7 +139,7 @@
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header text-center pb-3" style="background-color:#e9ecef">
+            <div class="modal-header text-center pb-3" style="background-color:#011126">
                 <h5 class="modal-title">Update Kategori</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -160,7 +172,7 @@
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header text-center pb-3" style="background-color:#e9ecef">
+            <div class="modal-header text-center pb-3" style="background-color:#011126">
                 <h5 class="modal-title">Hapus Data</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

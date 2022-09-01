@@ -20,8 +20,9 @@ class CreateProductsTable extends Migration
             $table->string('nama');
             $table->string('harga_sewa');
             $table->string('stok');
+            $table->string('deskripsi');
             $table->string('gambar');
-            $table->string('is_real');
+            $table->boolean('is_ready')->default(true);
             $table->timestamps();
         });
     }
