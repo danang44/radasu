@@ -177,22 +177,44 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header text-center pb-3" style="background-color:#011126">
-                <h5 class="modal-title">Update Kategori</h5>
+                <h5 class="modal-title">Update Produk</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <!--FORM UPDATE BARANG-->
-                <form action="/kategori/update" method="post">
+                <form action="/produk/update" method="post">
                     @csrf
 
-                    <input type="hidden" id="id" name="id"> <br />
+                    <input type="hidden" id="id" name="id"> <br/>
 
                     <div class="form-group">
-                        <label>Keterangan</label>
-                        <input type="text" required="required" class="form-control" name="keterangan" id="keterangan">
+                        <label>Nama</label>
+                        <input type="text" required="required" class="form-control" name="nama" id="nama">
                     </div>
+                    <div class="form-group">
+                        <label>Deskripsi</label>
+                        <input type="text" required="required" class="form-control" name="deskripsi" id="deskripsi">
+                    </div>
+                    <div class="form-group">
+                        <label>Stok</label>
+                        <input type="text" required="required" class="form-control" name="stok" id="stok">
+                    </div>
+                    <div class="form-group">
+                        <label>Harga Sewa</label>
+                        <input type="text" required="required" class="form-control" name="harga_sewa" id="harga_sewa">
+                    </div>
+                    <div class="form-group">
+                            <div style="position:relative;">
+                                <a class='btn btn-info col-sm-3' href='javascript:;'>
+                                    Choose Image...
+                                    <input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="gambar" size="40" onchange='$("#upload-file-info").html($(this).val());'>
+                                </a>
+                                &nbsp;
+                                <span class='label label-info' id="upload-file-info"></span>
+                            </div>
+                            </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-outline-primary">Simpan</button>
@@ -217,7 +239,7 @@
             </div>
             <div class="modal-body">
                 <!--FORM UPDATE BARANG-->
-                <form action="/kategori/delete" method="post">
+                <form action="/produk/delete" method="post">
                     @csrf
                     @method('DELETE')
                     <h3>Anda yakin menghapus data ?</h3>

@@ -51,4 +51,40 @@ class ProductController extends Controller
 
         return redirect('/produk');
     }
+    public function edit($id)
+    {
+        $product = Product::findorfail($id);
+        return response()->json([
+            'status' => 200,
+            'product' => $product,
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+
+        DB::table('products')->where('id', $request->id)->update([
+
+            'id' => $request->id,
+            'nama' => $request->nama,
+            'harga_sewa' => $request->harga_sewa,
+            'stok' => $request->stok,
+            'deskripsi' => $request->deskripsi,
+        ]);
+        return redirect('/produk');
+    }
+    public function destroy(Request $request)
+    {
+        $id = $request->input('delete_id');
+        $category = Product::find($id);
+        $category->delete();
+        return redirect()->back()->with('status', 'Data berhasil dihapus');
+    }
 }
