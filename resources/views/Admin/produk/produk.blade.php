@@ -111,6 +111,61 @@
 
    
 </script>
+
+<!-- Modal Update Barang-->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center pb-3" style="background-color:#011126">
+                <h5 class="modal-title">Update Produk</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!--FORM UPDATE BARANG-->
+                <form action="/produk_update" method="post">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <label>Kategori</label>
+                        <select id="category_id" name="category_id" class=" col-md-4 form-control form-control-select2" data-container-css-class="border-teal" data-dropdown-css-class="border-teal" required>
+                            <option value=>-- Pilih Kategori --</option>
+                            @foreach($category as $k)
+                            <option value="{{$k->id}}">{{$k->keterangan}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <input type="hidden" id="id" name="id"> <br />
+                    <div class="form-group">
+                        <label>Nama</label>
+                        <input type="text" required="required" class="form-control" name="nama" id="nama">
+                    </div>
+                    <div class="form-group">
+                        <label>Deskripsi</label>
+                        <input type="text" required="required" class="form-control" name="deskripsi" id="deskripsi">
+                    </div>
+                    <div class="form-group">
+                        <label>Stok</label>
+                        <input type="text" required="required" class="form-control" name="stok" id="stok">
+                    </div>
+                    <div class="form-group">
+                        <label>Harga Sewa</label>
+                        <input type="text" required="required" class="form-control" name="harga_sewa" id="harga_sewa">
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-outline-primary">Simpan</button>
+                    </div>
+                </form>
+                <!--END FORM UPDATE BARANG-->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal UPDATE Barang-->
+
 <!-- add -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -175,59 +230,7 @@
 </div>
 <!-- end add -->
 
-<!-- Modal Update Barang-->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header text-center pb-3" style="background-color:#011126">
-                <h5 class="modal-title">Update Produk</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!--FORM UPDATE BARANG-->
-                <form action="/produk_update" method="post">
-                    {{ csrf_field() }}
-                    <div class="form-group">
-                        <label>Kategori</label>
-                        <select id="category_id" name="category_id" class=" col-md-4 form-control form-control-select2" data-container-css-class="border-teal" data-dropdown-css-class="border-teal" required>
-                            <option value=>-- Pilih Kategori --</option>
-                            @foreach($category as $k)
-                            <option value="{{$k->id}}">{{$k->keterangan}}</option>
-                            @endforeach
-                        </select>
-                    </div>
 
-                    <input type="hidden" id="id" name="id"> <br />
-                    <div class="form-group">
-                        <label>Nama</label>
-                        <input type="text" required="required" class="form-control" name="nama" id="nama">
-                    </div>
-                    <div class="form-group">
-                        <label>Deskripsi</label>
-                        <input type="text" required="required" class="form-control" name="deskripsi" id="deskripsi">
-                    </div>
-                    <div class="form-group">
-                        <label>Stok</label>
-                        <input type="text" required="required" class="form-control" name="stok" id="stok">
-                    </div>
-                    <div class="form-group">
-                        <label>Harga Sewa</label>
-                        <input type="text" required="required" class="form-control" name="harga_sewa" id="harga_sewa">
-                    </div>
-                    
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-outline-primary">Simpan</button>
-                    </div>
-                </form>
-                <!--END FORM UPDATE BARANG-->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Modal UPDATE Barang-->
 
 <!-- delete -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
