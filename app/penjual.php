@@ -3,15 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\pembeli;
+use App\User;
 class penjual extends Model
 {
-    protected $table = "penjual";
+    protected $table = "penjuals";
 
-    protected $fillable = ['id_pembeli','nama', 'alamat', 'pengirim'];
+    protected $fillable = ['id','user_id','nama', 'alamat', 'nama_toko','ktp','pengiriman'];
 
-    public function pembeli()
+    public function user()
     {
-        return $this->belongsTo('App\pembeli', 'id_pembeli', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

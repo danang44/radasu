@@ -44,8 +44,10 @@ class LoginController extends Controller
         // dd($user);
         if ($user->hasRole('admin')) {
             return redirect()->route('kategori');
-        } else {
-            return redirect()->route('home');
+        } elseif ($user->hasRole('suplier')){
+            return redirect()->route('home_supplier');
+        }else{
+            return redirect()->route('home_user');
         }
     }
 }

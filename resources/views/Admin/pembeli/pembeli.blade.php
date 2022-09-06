@@ -28,7 +28,7 @@
                     <div class="header-elements d-none py-0 mb-3 mb-md-0">
                         <div class="breadcrumb">
                             <a href="/dashboard" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-                            <span class="breadcrumb-item active">Data Produk</span>
+                            <span class="breadcrumb-item active">Data Pembeli</span>
                         </div>
                     </div>
                 </div>
@@ -43,22 +43,19 @@
                             <table id="table_id" class="table table-striped  table-striped table-border m-1 datatable-scroll-y">
                                 <thead>
                                 <tr class="text-center">
-                                        <th>Gambar</th>
-                                        <th>Jenis</th>
                                         <th>Nama</th>
-                                        <th>Harga</th>
-                                        <th>Deskripsi</th>
+                                        <th>Alamat</th>
+                                        <th>Nomor HP</th>
                                         <th class="col-3 text-center">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($product as $c)
+                                    @foreach($pembeli as $c)
                                     <tr>
-                                    <td class="pr-2 pl-1 text-center"><img width="80px" src="{{ url('/data_produk/'.$c->gambar) }}"></td>
-                                    <td class="pr-1 pl-1 text-center">{{@$c->category->keterangan}}</td>
-                                    <td class="pr-2 pl-2 ">{{$c->nama}} ({{$c->stok}})</td>
-                                    <td class="pr-1 pl-1 text-center">Rp {{number_format($c->harga_sewa)}}</td>
-                                    <td class="pr-1 pl-1">{{$c->deskripsi}}</td>
+                                    <!-- <td class="pr-2 pl-1 text-center"><img width="80px" src="{{ url('/data_produk/'.$c->gambar) }}"></td> -->
+                                    <td class="pr-1 pl-1 text-center">{{@$c->user->name}}</td>
+                                    <td class="pr-2 pl-2 ">{{$c->alamat}}</td>
+                                    <td class="pr-2 pl-2 ">{{$c->nomer_hp}}</td>
                                         <td class="text-center">
                                             <button class="btn btn-outline-info editbtn" value="{{$c->id}}"><i class="fa-solid fa-pen"></i></button>
                                             <button class="btn btn-outline-danger deletebtn" value="{{$c->id}}"><i class="fa-solid fa-trash"></i></button>
@@ -108,50 +105,7 @@
         });
     });
 </script>
-<!-- Modal Update Barang-->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header text-center pb-3" style="background-color:#011126">
-                <h5 class="modal-title">Update Produk</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!--FORM UPDATE BARANG-->
-                <form action="/produk_update" method="post">
-                    @csrf
 
-                    <input type="hidden" id="id" name="id"> <br/>
-
-                    <div class="form-group">
-                        <label>Nama</label>
-                        <input type="text" required="required" class="form-control" name="nama" id="nama">
-                    </div>
-                    <div class="form-group">
-                        <label>Deskripsi</label>
-                        <input type="text" required="required" class="form-control" name="deskripsi" id="deskripsi">
-                    </div>
-                    <div class="form-group">
-                        <label>Stok</label>
-                        <input type="text" required="required" class="form-control" name="stok" id="stok">
-                    </div>
-                    <div class="form-group">
-                        <label>Harga Sewa</label>
-                        <input type="text" required="required" class="form-control" name="harga_sewa" id="harga_sewa">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-outline-primary">Simpan</button>
-                    </div>
-                </form>
-                <!--END FORM UPDATE BARANG-->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Modal UPDATE Barang-->
 <!-- add -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -164,47 +118,29 @@
             </div>
 
             <div class="modal-body">
-                <form action="/produk_store" method="POST" enctype="multipart/form-data">
+                <form action="/pembeli_store" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                     <div class="form-group">
-                        <label>Kategori</label>
-                        <select id="category_id" name="category_id" class=" col-md-4 form-control form-control-select2" data-container-css-class="border-teal" data-dropdown-css-class="border-teal" required>
+                        <label>Nama</label>
+                        <select id="user_id" name="user_id" class=" col-md-4 form-control form-control-select2" data-container-css-class="border-teal" data-dropdown-css-class="border-teal" required>
                             <option value=>-- Pilih Kategori --</option>
-                            @foreach($category as $k)
-                            <option value="{{$k->id}}">{{$k->keterangan}}</option>
+                            @foreach($user as $k)
+                            <option value="{{$k->id}}">{{$k->name}}</option>
                             @endforeach
                         </select>
 
                     </div>
                     <input type="hidden" id="id" name="id">
                     <div class="form-group">
-                        <label>Nama</label>
-                        <input type="text" required="required" class="form-control" name="nama" id="nama">
+                        <label>Alamat</label>
+                        <input type="text" required="required" class="form-control" name="alamat" id="alamat">
                     </div>
                     <div class="form-group">
-                        <label>Deskripsi</label>
-                        <input type="text" required="required" class="form-control" name="deskripsi" id="deskripsi">
-                    </div>
-                    <div class="form-group">
-                        <label>stok</label>
-                        <input type="text" required="required" class="form-control" name="stok" id="stok">
+                        <label>Nomor HP</label>
+                        <input type="text" required="required" class="form-control" name="nomer_hp" id="nomer_hp">
                     </div>
 
-                    <div class="form-group">
-                        <label>Harga Sewa</label>
-                        <input type="text" required="required" class="form-control" name="harga_sewa" id="harga_sewa">
-                    </div>
-
-                    <div class="form-group">
-                            <div style="position:relative;">
-                                <a class='btn btn-info col-sm-3' href='javascript:;'>
-                                    Choose Image...
-                                    <input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="gambar" size="40" onchange='$("#upload-file-info").html($(this).val());'>
-                                </a>
-                                &nbsp;
-                                <span class='label label-info' id="upload-file-info"></span>
-                            </div>
-                        </div>
+                
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Batal</button>
                         <button type="submit"  value="Upload" class="btn btn-outline-primary">Simpan</button>

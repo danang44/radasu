@@ -15,9 +15,11 @@ class CreatePenjualsTable extends Migration
     {
         Schema::create('penjuals', function (Blueprint $table) {
             $table->id();
-            $table->string('id_pembeli');
+            $table->string('user_id');
             $table->string('nama');
             $table->string('alamat');
+            $table->string('nama_toko');
+            $table->string('ktp');
             $table->string('Pengiriman');
             $table->timestamps();
         });

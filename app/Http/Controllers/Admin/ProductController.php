@@ -19,7 +19,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
+        //dd($request);
         $this->validate($request, [
             // 'id_kategori' => 'required',
             'nama' => 'required',

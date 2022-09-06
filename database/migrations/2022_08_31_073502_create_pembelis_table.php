@@ -15,10 +15,9 @@ class CreatePembelisTable extends Migration
     {
         Schema::create('pembelis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('email');
-            $table->string('password');
-            $table->string('role');
+            $table->string('user_id');
+            $table->string('alamat');
+            $table->string('nomer_hp');
             $table->timestamps();
         });
     }

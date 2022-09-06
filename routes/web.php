@@ -44,6 +44,39 @@ Route::get('/kategori', 'Admin\CategoryController@index')->name('kategori');
 Route::get('/produk', 'Admin\ProductController@index');
 Route::post('/produk_store', 'Admin\ProductController@store');
 Route::get('/produk_edit/{id}', 'Admin\ProductController@edit')->name('produk_edit');
-Route::post('/produk/update', 'Admin\ProductController@update');
+Route::post('/produk_update', 'Admin\ProductController@update');
 Route::delete('/produk/delete', 'Admin\ProductController@destroy')->name('produk_delete');
+
+
 });
+// Penjual
+Route::get('/penjual', 'Admin\PenjualController@index');
+Route::post('/penjual_store', 'Admin\PenjualController@store');
+Route::get('/penjual_edit/{id}', 'Admin\PenjualController@edit')->name('penjual_edit');
+Route::post('/penjual_update', 'Admin\PenjualController@update');
+Route::delete('/penjual/delete', 'Admin\PenjualController@destroy')->name('penjual_delete');
+
+// Pembeli
+Route::get('/pembeli', 'Admin\PembeliController@index');
+Route::post('/pembeli_store', 'Admin\PembeliController@store');
+Route::get('/pembeli_edit/{id}', 'Admin\PembeliController@edit')->name('pembeli_edit');
+Route::post('/penjual_update', 'Admin\PenjualController@update');
+Route::delete('/penjual/delete', 'Admin\PenjualController@destroy')->name('penjual_delete');
+
+Route::group(['middleware' => ['role:suplier']], function () {
+    
+    // Product
+  
+  
+    Route::get('/home_supplier', 'Suplier\HomeController@index')->name('home_supplier');
+    
+    });
+
+Route::group(['middleware' => ['role:user']], function () {
+    
+    // Product
+  
+  
+    Route::get('/home_user', 'User\HomeController@index')->name('home_user');
+    
+    });

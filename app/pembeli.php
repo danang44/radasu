@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\penjual;
 class pembeli extends Model
 {
-    protected $table = "pembeli";
+    protected $table = "pembelis";
 
-    protected $fillable = ['nama', 'email', 'password', 'role'];
+    protected $fillable = ['id','user_id', 'alamat', 'nomer_hp'];
 
-    public function penjual()
+    public function user()
     {
-        return $this->hasMany('App\penjual', 'id', 'id_pembeli');
+        return $this->belongsTo(user::class, 'user_id', 'id');
     }
 }
