@@ -23,13 +23,13 @@ Route::get('/', function () {
 
 Route::get('/home', 'AdminController@home');
 
+
 // Category
 Route::get('/kategori', 'Admin\CategoryController@index');
 Route::post('/kategori_store', 'Admin\CategoryController@store');
 Route::get('/kategori_edit/{id}', 'Admin\CategoryController@edit')->name('kategori_edit');
 Route::post('/kategori/update', 'Admin\CategoryController@update');
 Route::delete('/kategori/delete', 'Admin\CategoryController@destroy')->name('kategori_delete');
-
 
 
 
@@ -40,14 +40,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['role:admin']], function () {
 Route::get('/kategori', 'Admin\CategoryController@index')->name('kategori');
 
+
 // Product
 Route::get('/produk', 'Admin\ProductController@index');
 Route::post('/produk_store', 'Admin\ProductController@store');
 Route::get('/produk_edit/{id}', 'Admin\ProductController@edit')->name('produk_edit');
 Route::post('/produk_update', 'Admin\ProductController@update');
 Route::delete('/produk/delete', 'Admin\ProductController@destroy')->name('produk_delete');
-
-
+Route::post('/produk_update', 'Admin\ProductController@update')->name('produk_update');
+Route::delete('/produk/delete', 'Admin\ProductController@destroy')->name('produk_delete');
 });
 // Penjual
 Route::get('/penjual', 'Admin\PenjualController@index');

@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Category;
-use App\Product;
+use App\category;
+use App\product;
 use Illuminate\Support\Facades\DB;
+
 
 class ProductController extends Controller
 {
@@ -51,35 +51,34 @@ class ProductController extends Controller
 
         return redirect('/produk');
     }
+
     public function edit($id)
     {
-        $product = Product::findorfail($id);
+        $category = Category::all();
+        $product = Product::find($id);
         return response()->json([
             'status' => 200,
             'product' => $product,
+            'category' => $category,
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request)
     {
 
         DB::table('products')->where('id', $request->id)->update([
-
             'id' => $request->id,
             'nama' => $request->nama,
-            'harga_sewa' => $request->harga_sewa,
-            'stok' => $request->stok,
             'deskripsi' => $request->deskripsi,
+            'stok' => $request->stok,
+            'harga_sewa' => $request->harga_sewa,
+            'category_id' => $request->category_id,
+
         ]);
+
         return redirect('/produk');
     }
+   
     public function destroy(Request $request)
     {
         $id = $request->input('delete_id');

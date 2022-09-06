@@ -11,6 +11,7 @@
     option {
         color: black;
     }
+
     .dataTables_info {
         color: white !important;
     }
@@ -42,7 +43,7 @@
                         <div class="pt-2 pr-1 pl-1 table-responsive col-sm-12 ">
                             <table id="table_id" class="table table-striped  table-striped table-border m-1 datatable-scroll-y">
                                 <thead>
-                                <tr class="text-center">
+                                    <tr class="text-center">
                                         <th>Gambar</th>
                                         <th>Jenis</th>
                                         <th>Nama</th>
@@ -54,11 +55,11 @@
                                 <tbody>
                                     @foreach($product as $c)
                                     <tr>
-                                    <td class="pr-2 pl-1 text-center"><img width="80px" src="{{ url('/data_produk/'.$c->gambar) }}"></td>
-                                    <td class="pr-1 pl-1 text-center">{{@$c->category->keterangan}}</td>
-                                    <td class="pr-2 pl-2 ">{{$c->nama}} ({{$c->stok}})</td>
-                                    <td class="pr-1 pl-1 text-center">Rp {{number_format($c->harga_sewa)}}</td>
-                                    <td class="pr-1 pl-1">{{$c->deskripsi}}</td>
+                                        <td class="pr-2 pl-1 text-center"><img width="80px" src="{{ url('/data_produk/'.$c->gambar) }}"></td>
+                                        <td class="pr-1 pl-1 text-center">{{@$c->category->keterangan}}</td>
+                                        <td class="pr-2 pl-2 ">{{$c->nama}} ({{$c->stok}})</td>
+                                        <td class="pr-1 pl-1 text-center">Rp {{number_format($c->harga_sewa)}}</td>
+                                        <td class="pr-1 pl-1">{{$c->deskripsi}}</td>
                                         <td class="text-center">
                                             <button class="btn btn-outline-info editbtn" value="{{$c->id}}"><i class="fa-solid fa-pen"></i></button>
                                             <button class="btn btn-outline-danger deletebtn" value="{{$c->id}}"><i class="fa-solid fa-trash"></i></button>
@@ -97,16 +98,19 @@
                 url: "/produk_edit/" + id,
                 success: function(response) {
                     console.log(response.product.keterangan)
+                    console.log(response.product.deskripsi)
                     $('#nama').val(response.product.nama);
-                        $('#deskripsi').val(response.product.deskripsi);
-                        $('#stok').val(response.product.stok);
-                        $('#harga_sewa').val(response.product.harga_sewa);
-                        $('#category_id').val(response.product.category_id);
-                        $('#id').val(response.product.id);
+                    $('#deskripsi').val(response.product.deskripsi);
+                    $('#stok').val(response.product.stok);
+                    $('#harga_sewa').val(response.product.harga_sewa);
+                    $('#category_id').val(response.product.category_id);
+                    $('#id').val(response.product.id);
                 }
             });
         });
     });
+
+   
 </script>
 <!-- Modal Update Barang-->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -122,9 +126,18 @@
                 <!--FORM UPDATE BARANG-->
                 <form action="/produk_update" method="post">
                     @csrf
-
                     <input type="hidden" id="id" name="id"> <br/>
-
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <label>Kategori</label>
+                        <select id="category_id" name="category_id" class=" col-md-4 form-control form-control-select2" data-container-css-class="border-teal" data-dropdown-css-class="border-teal" required>
+                            <option value=>-- Pilih Kategori --</option>
+                            @foreach($category as $k)
+                            <option value="{{$k->id}}">{{$k->keterangan}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <input type="hidden" id="id" name="id"> <br />
                     <div class="form-group">
                         <label>Nama</label>
                         <input type="text" required="required" class="form-control" name="nama" id="nama">
@@ -165,7 +178,7 @@
 
             <div class="modal-body">
                 <form action="/produk_store" method="POST" enctype="multipart/form-data">
-                {{ csrf_field() }}
+                    {{ csrf_field() }}
                     <div class="form-group">
                         <label>Kategori</label>
                         <select id="category_id" name="category_id" class=" col-md-4 form-control form-control-select2" data-container-css-class="border-teal" data-dropdown-css-class="border-teal" required>
@@ -196,18 +209,18 @@
                     </div>
 
                     <div class="form-group">
-                            <div style="position:relative;">
-                                <a class='btn btn-info col-sm-3' href='javascript:;'>
-                                    Choose Image...
-                                    <input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="gambar" size="40" onchange='$("#upload-file-info").html($(this).val());'>
-                                </a>
-                                &nbsp;
-                                <span class='label label-info' id="upload-file-info"></span>
-                            </div>
+                        <div style="position:relative;">
+                            <a class='btn btn-info col-sm-3' href='javascript:;'>
+                                Choose Image...
+                                <input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="gambar" size="40" onchange='$("#upload-file-info").html($(this).val());'>
+                            </a>
+                            &nbsp;
+                            <span class='label label-info' id="upload-file-info"></span>
                         </div>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Batal</button>
-                        <button type="submit"  value="Upload" class="btn btn-outline-primary">Simpan</button>
+                        <button type="submit" value="Upload" class="btn btn-outline-primary">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -215,7 +228,6 @@
     </div>
 </div>
 <!-- end add -->
-
 <!-- delete -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
