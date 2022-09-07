@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\pembeli;
@@ -39,4 +39,39 @@ class PembeliController extends Controller
 
         return redirect('/pembeli');
     }
+    public function edit($id)
+    {
+        $pembeli = pembeli::find($id);
+        return response()->json([
+            'status' => 200,
+            'pembeli' => $pembeli,
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+
+        DB::table('pembelis')->where('id', $request->id)->update([
+
+            'alamat' => $request->alamat,
+            'nomer_hp' => $request->nomer_hp,
+        ]);
+        return redirect('/pembeli');
+    }
+    public function destroy(Request $request)
+    {
+        $id = $request->input('delete_id');
+        $pembeli = pembeli::find($id);
+        $pembeli->delete();
+        return redirect()->back()->with('status', 'Data berhasil dihapus');
+    }
+
 }
+

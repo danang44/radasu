@@ -21,14 +21,14 @@
             <div class="card mb-5">
                 <div class="page-header-content header-elements-md-inline" style="background-color:#011126">
                     <div class="page-title d-flex" style="padding-top:1% !important;padding-bottom:1% !important">
-                        <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Home</span> - Data Produk</h4>
+                        <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Home</span> - Data Penjual</h4>
                         <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
                     </div>
 
                     <div class="header-elements d-none py-0 mb-3 mb-md-0">
                         <div class="breadcrumb">
                             <a href="/dashboard" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-                            <span class="breadcrumb-item active">Data Produk</span>
+                            <span class="breadcrumb-item active">Data Penjual</span>
                         </div>
                     </div>
                 </div>
@@ -95,21 +95,63 @@
 
             $.ajax({
                 type: "GET",
-                url: "/produk_edit/" + id,
+                url: "/penjual_edit/" + id,
                 success: function(response) {
-                    console.log(response.product.keterangan)
-                    $('#nama').val(response.product.nama);
-                        $('#deskripsi').val(response.product.deskripsi);
-                        $('#stok').val(response.product.stok);
-                        $('#harga_sewa').val(response.product.harga_sewa);
-                        $('#category_id').val(response.product.category_id);
-                        $('#id').val(response.product.id);
+                    console.log(response.penjual.alamat)
+                    $('#alamat').val(response.penjual.alamat);
+                        $('#nama_toko').val(response.penjual.nama_toko);
+                        $('#ktp').val(response.penjual.ktp);
+                        $('#pengiriman').val(response.penjual.pengiriman);
+                        $('#id').val(response.penjual.id);
                 }
             });
         });
     });
 </script>
+<!-- Modal Update Barang-->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center pb-3" style="background-color:#011126">
+                <h5 class="modal-title">Update penjual</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!--FORM UPDATE BARANG-->
+                <form action="/penjual/update" method="post">
+                    @csrf
 
+                    <input type="hidden" id="id" name="id"> <br />
+                    <div class="form-group">
+                        <label>Alamat</label>
+                        <input type="text" required="required" class="form-control" name="alamat" id="alamat">
+                    </div>
+                    <div class="form-group">
+                        <label>Nama Toko</label>
+                        <input type="text" required="required" class="form-control" name="nama_toko" id="nama_toko">
+                    </div>
+                    <div class="form-group">
+                        <label>Jaminan</label>
+                        <input type="text" required="required" class="form-control" name="ktp" id="ktp">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Opsi Pengiriman</label>
+                        <input type="text" required="required" class="form-control" name="pengiriman" id="pengiriman">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-outline-primary">Simpan</button>
+                    </div>
+                </form>
+                <!--END FORM UPDATE BARANG-->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal UPDATE Barang-->
 <!-- add -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -127,7 +169,7 @@
                     <div class="form-group">
                         <label>Nama</label>
                         <select id="user_id" name="user_id" class=" col-md-4 form-control form-control-select2" data-container-css-class="border-teal" data-dropdown-css-class="border-teal" required>
-                            <option value=>-- Pilih Kategori --</option>
+                            <option value=>-- Pilih user --</option>
                             @foreach($user as $k)
                             <option value="{{$k->id}}">{{$k->name}}</option>
                             @endforeach
@@ -165,6 +207,9 @@
 </div>
 <!-- end add -->
 
+
+
+
 <!-- delete -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -177,7 +222,7 @@
             </div>
             <div class="modal-body">
                 <!--FORM UPDATE BARANG-->
-                <form action="/produk/delete" method="post">
+                <form action="/penjual/delete" method="post">
                     @csrf
                     @method('DELETE')
                     <h3>Anda yakin menghapus data ?</h3>

@@ -55,7 +55,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $category = Category::all();
-        $product = Product::find($id);
+        $product = product::find($id);
         return response()->json([
             'status' => 200,
             'product' => $product,
@@ -65,6 +65,7 @@ class ProductController extends Controller
 
     public function update(Request $request)
     {
+      //  dd($request);
 
         DB::table('products')->where('id', $request->id)->update([
             'id' => $request->id,

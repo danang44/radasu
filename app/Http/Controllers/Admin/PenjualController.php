@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\penjual;
 use App\user;
@@ -40,6 +42,42 @@ class PenjualController extends Controller
 
 
         return redirect('/penjual');
+    }
+
+    public function edit($id)
+    {
+        $penjual = penjual::find($id);
+        return response()->json([
+            'status' => 200,
+            'penjual' => $penjual,
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+
+        DB::table('penjuals')->where('id', $request->id)->update([
+
+            'alamat' => $request->alamat,
+            'nama_toko' => $request->nama_toko,
+            'ktp' => $request->ktp,
+            'pengiriman' => $request->pengiriman,
+        ]);
+        return redirect('/penjual');
+    }
+    public function destroy(Request $request)
+    {
+        $id = $request->input('delete_id');
+        $penjual = penjual::find($id);
+        $penjual->delete();
+        return redirect()->back()->with('status', 'Data berhasil dihapus');
     }
 
 }

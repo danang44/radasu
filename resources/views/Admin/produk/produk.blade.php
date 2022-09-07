@@ -97,8 +97,7 @@
                 type: "GET",
                 url: "/produk_edit/" + id,
                 success: function(response) {
-                    console.log(response.product.keterangan)
-                    console.log(response.product.deskripsi)
+                    console.log(response.product.nama)
                     $('#nama').val(response.product.nama);
                     $('#deskripsi').val(response.product.deskripsi);
                     $('#stok').val(response.product.stok);
@@ -109,8 +108,6 @@
             });
         });
     });
-
-   
 </script>
 <!-- Modal Update Barang-->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -124,9 +121,9 @@
             </div>
             <div class="modal-body">
                 <!--FORM UPDATE BARANG-->
-                <form action="/produk_update" method="post">
+                <form action="/produk/update" method="post">
                     @csrf
-                    <input type="hidden" id="id" name="id"> <br/>
+             
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label>Kategori</label>
@@ -143,16 +140,16 @@
                         <input type="text" required="required" class="form-control" name="nama" id="nama">
                     </div>
                     <div class="form-group">
-                        <label>Deskripsi</label>
-                        <input type="text" required="required" class="form-control" name="deskripsi" id="deskripsi">
-                    </div>
-                    <div class="form-group">
                         <label>Stok</label>
                         <input type="text" required="required" class="form-control" name="stok" id="stok">
                     </div>
                     <div class="form-group">
                         <label>Harga Sewa</label>
                         <input type="text" required="required" class="form-control" name="harga_sewa" id="harga_sewa">
+                    </div>
+                    <div class="form-group">
+                        <label>Deskripsi</label>
+                        <input type="text" required="required" class="form-control" name="deskripsi" id="deskripsi">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Batal</button>
