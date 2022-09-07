@@ -3,6 +3,8 @@
 
 @section('content')
 
+@include('sweetalert::alert') 
+
 <style>
     label {
         color: white !important;

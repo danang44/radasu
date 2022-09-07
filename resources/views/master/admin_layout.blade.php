@@ -171,7 +171,7 @@
 
 
                         <li class="nav-item">
-                            <a href="/home" class="nav-link">
+                            <a href="/home_admin" class="nav-link">
                                 <i class="icon-home4"></i>
                                 <span>
                                     Dashboard
@@ -216,7 +216,14 @@
                                 </li> -->
                             </ul>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="/tes" class="nav-link">
+                                <i class="icon-home4"></i>
+                                <span>
+                                    buat ngetes
+                                </span>
+                            </a>
+                        </li>
                         <!-- /main -->
 
 
