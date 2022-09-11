@@ -52,39 +52,47 @@ class SKController extends Controller
     return redirect('/sk');
     }
 
-    // public function edit($id)
-    // {
-    //     $SK = SK::find($id);
-    //     return response()->json([
-    //         'status' => 200,
-    //         'SK' => $SK,
-    //     ]);
-    // }
+    public function edit($id)
+    {
+        $sk = sk::find($id);
+        return response()->json([
+            'status' => 200,
+            'sk' => $sk,
+        ]);
+    }
 
-    // /**
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function update(Request $request)
-    // {
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+        //dd($request);
+        DB::table('s_k_s')->where('id', $request->id)->update([
 
-    //     DB::table('s_k_s')->where('id', $request->id)->update([
-
-    //         'alamat' => $request->alamat,
-    //         'nama_toko' => $request->nama_toko,
-    //         'ktp' => $request->ktp,
-    //         'pengiriman' => $request->pengiriman,
-    //     ]);
-    //     return redirect('/SK');
-    // }
-    // public function destroy(Request $request)
-    // {
-    //     $id = $request->input('delete_id');
-    //     $SK = SK::find($id);
-    //     $SK->delete();
-    //     return redirect()->back()->with('status', 'Data berhasil dihapus');
-    // }
+            'id' => $request->id,
+            //'user_id' => $request->user_id,
+            'sk1' => $request->sk1,
+            'sk2' => $request->sk2,
+            'sk3' => $request->sk3,
+            'sk4' => $request->sk4,
+            'sk5' => $request->sk5,
+            'sk6' => $request->sk6,
+            'sk7' => $request->sk7,
+            'sk8' => $request->sk8,
+            'sk9' => $request->sk9,
+            'sk10' => $request->sk10,
+        ]);
+        return redirect('/sk');
+    }
+    public function destroy(Request $request)
+    {
+        $id = $request->input('delete_id');
+        $SK = SK::find($id);
+        $SK->delete();
+        return redirect()->back()->with('status', 'Data berhasil dihapus');
+    }
 }

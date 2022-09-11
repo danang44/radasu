@@ -105,9 +105,11 @@
 
             $.ajax({
                 type: "GET",
-                url: "/Sk_edit/" + id,
+                url: "/sk_edit/" + id,
                 success: function(response) {
                     console.log(response.sk.sk1)
+                    $('#id').val(response.sk.id);
+                    //$('#user_id').val(response.sk.user_id);
                     $('#sk1').val(response.sk.sk1);
                     $('#sk2').val(response.sk.sk2);
                     $('#sk3').val(response.sk.sk3);
@@ -123,6 +125,74 @@
         });
     });
 </script>
+
+<!-- Modal Update Barang-->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center pb-3" style="background-color:#011126">
+                <h5 class="modal-title">Update SK</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!--FORM UPDATE BARANG-->
+                <form action="/sk_update" method="post">
+                    @csrf
+
+                    <input type="hidden" id="id" name="id"> <br/>
+                    <div class="form-group">
+                        <label>SK1</label>
+                        <input type="text" required="required" class="form-control" name="sk1" id="sk1">
+                    </div>
+                    <div class="form-group">
+                        <label>SK2</label>
+                        <input type="text" required="required" class="form-control" name="sk2" id="sk2">
+                    </div>
+                    <div class="form-group">
+                        <label>SK3</label>
+                        <input type="text" required="required" class="form-control" name="sk3" id="sk3">
+                    </div>
+                    <div class="form-group">
+                        <label>SK4</label>
+                        <input type="text" required="required" class="form-control" name="sk4" id="sk4">
+                    </div>
+                    <div class="form-group">
+                        <label>SK5</label>
+                        <input type="text" required="required" class="form-control" name="sk5" id="sk5">
+                    </div>
+                    <div class="form-group">
+                        <label>SK6</label>
+                        <input type="text" required="required" class="form-control" name="sk6" id="sk6">
+                    </div>
+                    <div class="form-group">
+                        <label>SK7</label>
+                        <input type="text" required="required" class="form-control" name="sk7" id="sk7">
+                    </div>
+                    <div class="form-group">
+                        <label>SK8</label>
+                        <input type="text" required="required" class="form-control" name="sk8" id="sk8">
+                    </div>
+                    <div class="form-group">
+                        <label>SK9</label>
+                        <input type="text" required="required" class="form-control" name="sk9" id="sk9">
+                    </div>
+                    <div class="form-group">
+                        <label>SK10</label>
+                        <input type="text" required="required" class="form-control" name="sk10" id="sk10">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-outline-primary">Simpan</button>
+                    </div>
+                </form>
+                <!--END FORM UPDATE BARANG-->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal UPDATE Barang -->
 
 <!-- add -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -199,71 +269,33 @@
 </div>
 <!-- end add -->
 
-<!-- Modal Update Barang-->
-<!-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- delete -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header text-center pb-3" style="background-color:#011126">
-                <h5 class="modal-title">Update SK</h5>
+                <h5 class="modal-title">Hapus Data</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body"> -->
+            <div class="modal-body">
                 <!--FORM UPDATE BARANG-->
-                <!-- <form action="/Sk/update" method="post">
+                <form action="/Sk/delete" method="post">
                     @csrf
-
-                    <input type="hidden" id="id" name="id"> <br />
-                    <div class="form-group">
-                        <label>SK1</label>
-                        <input type="text" required="required" class="form-control" name="sk1" id="sk1">
-                    </div>
-                    <div class="form-group">
-                        <label>SK2</label>
-                        <input type="text" required="required" class="form-control" name="sk2" id="sk2">
-                    </div>
-                    <div class="form-group">
-                        <label>SK3</label>
-                        <input type="text" required="required" class="form-control" name="sk3" id="sk3">
-                    </div>
-                    <div class="form-group">
-                        <label>SK4</label>
-                        <input type="text" required="required" class="form-control" name="sk4" id="sk4">
-                    </div>
-                    <div class="form-group">
-                        <label>SK5</label>
-                        <input type="text" required="required" class="form-control" name="sk5" id="sk5">
-                    </div>
-                    <div class="form-group">
-                        <label>SK6</label>
-                        <input type="text" required="required" class="form-control" name="sk6" id="sk6">
-                    </div>
-                    <div class="form-group">
-                        <label>SK7</label>
-                        <input type="text" required="required" class="form-control" name="sk7" id="sk7">
-                    </div>
-                    <div class="form-group">
-                        <label>SK8</label>
-                        <input type="text" required="required" class="form-control" name="sk8" id="sk8">
-                    </div>
-                    <div class="form-group">
-                        <label>SK9</label>
-                        <input type="text" required="required" class="form-control" name="sk9" id="sk9">
-                    </div>
-                    <div class="form-group">
-                        <label>SK10</label>
-                        <input type="text" required="required" class="form-control" name="sk10" id="sk10">
-                    </div>
+                    @method('DELETE')
+                    <h3>Anda yakin menghapus data ?</h3>
+                    <input type="hidden" id="deleting_id" name="delete_id">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-outline-primary">Simpan</button>
+                        <button type="submit" class="btn btn-outline-primary">Hapus</button>
                     </div>
-                </form> -->
+                </form>
                 <!--END FORM UPDATE BARANG-->
-            <!-- </div>
+            </div>
         </div>
     </div>
-</div> -->
-<!-- End Modal UPDATE Barang -->
+</div>
+<!-- end delete -->
+
 @endsection

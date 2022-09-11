@@ -75,9 +75,9 @@ Route::group(['middleware' => 'App\Http\Middleware\PenjualMiddleware'], function
     // SK
     Route::get('/sk', 'Suplier\SkController@index');
     Route::post('/Sk_store', 'Suplier\SkController@store');
-    // Route::get('/Sk_edit/{id}', 'Admin\SkController@edit')->name('Sk_edit');
-    // Route::post('/Sk/update', 'Admin\SkController@update');
-    // Route::delete('/Sk/delete', 'Admin\SkController@destroy')->name('Sk/delete');
+    Route::get('/sk_edit/{id}', 'Suplier\SkController@edit')->name('sk_edit');
+    Route::post('/sk_update', 'Suplier\SkController@update');
+    Route::delete('/Sk/delete', 'Suplier\SkController@destroy')->name('Sk/delete');
 });
 
 Route::group(['middleware' => 'App\Http\Middleware\PenyewaMiddleware'], function () {
