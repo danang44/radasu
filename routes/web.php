@@ -29,7 +29,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function () {
-    
+
     Route::get('/home_admin', 'Admin\AdminController@home')->name('home_admin');
     Route::get('/kategori', 'Admin\CategoryController@index')->name('kategori');
 
@@ -54,6 +54,8 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function (
     Route::post('/penjual/update', 'Admin\PenjualController@update');
     Route::delete('/penjual/delete', 'Admin\PenjualController@destroy')->name('penjual/delete');
 
+
+
     // Pembeli
     Route::get('/pembeli', 'Admin\PembeliController@index');
     Route::post('/pembeli_store', 'Admin\PembeliController@store');
@@ -69,6 +71,13 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function (
 Route::group(['middleware' => 'App\Http\Middleware\PenjualMiddleware'], function () {
 
     Route::get('/home_supplier', 'Suplier\HomeController@index')->name('home_supplier');
+
+    // SK
+    Route::get('/Sk', 'Suplier\SkController@index');
+    Route::post('/Sk_store', 'Suplier\SkController@store');
+    // Route::get('/Sk_edit/{id}', 'Admin\SkController@edit')->name('Sk_edit');
+    // Route::post('/Sk/update', 'Admin\SkController@update');
+    // Route::delete('/Sk/delete', 'Admin\SkController@destroy')->name('Sk/delete');
 });
 
 Route::group(['middleware' => 'App\Http\Middleware\PenyewaMiddleware'], function () {
