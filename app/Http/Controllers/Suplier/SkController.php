@@ -21,31 +21,31 @@ class SKController extends Controller
     // dd($request);
     $this->validate($request, [
         'user_id' => 'required',
-        'SK1' => 'required',
-        'SK2' => 'required',
-        'SK3' => 'required',
-        'SK4' => 'required',
-        'SK5' => 'required',
-        'SK6' => 'required',
-        'SK7' => 'required',
-        'SK8' => 'required',
-        'SK9' => 'required',
-        'SK10' => 'required',
+        'sk1' => 'required',
+        'sk2' => 'required',
+        'sk3' => 'required',
+        'sk4' => 'required',
+        'sk5' => 'required',
+        'sk6' => 'required',
+        'sk7' => 'required',
+        'sk8' => 'required',
+        'sk9' => 'required',
+        'sk10' => 'required',
 
     ]);
 
-    SK::create([
+    sk::create([
     'user_id' => $request->user_id,
-    'SK1' => $request->sk1,
-    'SK2' => $request->sk2,
-    'SK3' => $request->sk3,
-    'SK4' => $request->sk4,
-    'SK5' => $request->sk5,
-    'SK6' => $request->sk6,
-    'SK7' => $request->sk7,
-    'SK8' => $request->sk8,
-    'SK9' => $request->sk9,
-    'SK10' => $request->sk10,
+    'sk1' => $request->sk1,
+    'sk2' => $request->sk2,
+    'sk3' => $request->sk3,
+    'sk4' => $request->sk4,
+    'sk5' => $request->sk5,
+    'sk6' => $request->sk6,
+    'sk7' => $request->sk7,
+    'sk8' => $request->sk8,
+    'sk9' => $request->sk9,
+    'sk10' => $request->sk10,
     ]);
 
 

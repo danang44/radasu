@@ -42,6 +42,7 @@
                             <table id="table_id" class="table table-striped  table-striped table-border m-1 datatable-scroll-y">
                                 <thead>
                                 <tr class="text-center">
+                                        <th>User</th>
                                         <th>SK1</th>
                                         <th>SK2</th>
                                         <th>SK3</th>
@@ -59,16 +60,16 @@
                                     @foreach($SK as $g)
                                     <tr>
                                     <td class="pr-1 pl-1 text-center">{{@$g->user->name}}</td>
-                                    <td class="pr-2 pl-2 ">{{$g->SK1}}</td>
-                                    <td class="pr-2 pl-2 ">{{$g->SK2}}</td>
-                                    <td class="pr-2 pl-2 ">{{$g->SK3}}</td>
-                                    <td class="pr-2 pl-2 ">{{$g->SK4}}</td>
-                                    <td class="pr-2 pl-2 ">{{$g->SK5}}</td>
-                                    <td class="pr-2 pl-2 ">{{$g->SK6}}</td>
-                                    <td class="pr-2 pl-2 ">{{$g->SK7}}</td>
-                                    <td class="pr-2 pl-2 ">{{$g->SK8}}</td>
-                                    <td class="pr-2 pl-2 ">{{$g->SK9}}</td>
-                                    <td class="pr-2 pl-2 ">{{$g->SK10}}</td>
+                                    <td class="pr-2 pl-2 ">{{$g->sk1}}</td>
+                                    <td class="pr-2 pl-2 ">{{$g->sk2}}</td>
+                                    <td class="pr-2 pl-2 ">{{$g->sk3}}</td>
+                                    <td class="pr-2 pl-2 ">{{$g->sk4}}</td>
+                                    <td class="pr-2 pl-2 ">{{$g->sk5}}</td>
+                                    <td class="pr-2 pl-2 ">{{$g->sk6}}</td>
+                                    <td class="pr-2 pl-2 ">{{$g->sk7}}</td>
+                                    <td class="pr-2 pl-2 ">{{$g->sk8}}</td>
+                                    <td class="pr-2 pl-2 ">{{$g->sk9}}</td>
+                                    <td class="pr-2 pl-2 ">{{$g->sk10}}</td>
                                         <td class="text-center">
                                             <button class="btn btn-outline-info editbtn" value="{{$g->id}}"><i class="fa-solid fa-pen"></i></button>
                                             <button class="btn btn-outline-danger deletebtn" value="{{$g->id}}"><i class="fa-solid fa-trash"></i></button>

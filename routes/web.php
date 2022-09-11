@@ -73,7 +73,7 @@ Route::group(['middleware' => 'App\Http\Middleware\PenjualMiddleware'], function
     Route::get('/home_supplier', 'Suplier\HomeController@index')->name('home_supplier');
 
     // SK
-    Route::get('/Sk', 'Suplier\SkController@index');
+    Route::get('/sk', 'Suplier\SkController@index');
     Route::post('/Sk_store', 'Suplier\SkController@store');
     // Route::get('/Sk_edit/{id}', 'Admin\SkController@edit')->name('Sk_edit');
     // Route::post('/Sk/update', 'Admin\SkController@update');
