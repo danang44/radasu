@@ -78,6 +78,13 @@ Route::group(['middleware' => 'App\Http\Middleware\PenjualMiddleware'], function
     Route::get('/sk_edit/{id}', 'Suplier\SkController@edit')->name('sk_edit');
     Route::post('/sk_update', 'Suplier\SkController@update');
     Route::delete('/Sk/delete', 'Suplier\SkController@destroy')->name('Sk/delete');
+   
+    // ProdukPenjual
+    Route::get('/PP', 'Suplier\ProdukPenjualController@index');
+    Route::post('/PP_store', 'Suplier\ProdukPenjualController@store');
+    Route::get('/PP_edit/{id}', 'Suplier\ProdukPenjualController@edit')->name('PP_edit');
+    Route::post('/PP_update', 'Suplier\ProdukPenjualController@update');
+    Route::delete('/PP_delete', 'Suplier\ProdukPenjualController@destroy')->name('PP_delete');
 });
 
 Route::group(['middleware' => 'App\Http\Middleware\PenyewaMiddleware'], function () {

@@ -183,6 +183,7 @@
 
                             <ul class="nav nav-group-sub" data-submenu-title="Layouts">
                                 <li class="nav-item"><a href="/sk" class="nav-link">Data SK</a></li>
+                                <li class="nav-item"><a href="/PP" class="nav-link">Tambah Produk</a></li>
                                 <!-- <li class="nav-item"><a href="/penjual" class="nav-link">Data Penjual</a></li>
                                 <li class="nav-item"><a href="/pembeli" class="nav-link">Data Pembeli</a></li>
                                 <li class="nav-item"><a href="/produk" class="nav-link">Data Produk</a></li>
