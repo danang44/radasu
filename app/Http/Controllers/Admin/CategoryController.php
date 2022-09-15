@@ -5,7 +5,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\category;
 use Illuminate\Support\Facades\DB;
-use Alert;
 
 class CategoryController extends Controller
 {
@@ -32,7 +31,7 @@ class CategoryController extends Controller
 
         // dd($clothes);
         // dd($clothes);
-        alert()->success('Success','Kategori Berhasil Disimpan.');
+        //alert()->success('Success','Kategori Berhasil Disimpan.');
         return redirect('/kategori');
     }
     public function edit($id)

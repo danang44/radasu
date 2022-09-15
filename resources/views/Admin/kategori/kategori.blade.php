@@ -3,7 +3,7 @@
 
 @section('content')
 
-@include('sweetalert::alert') 
+<!-- include('sweetalert::alert')  -->
 
 <style>
     label {
