@@ -20,9 +20,9 @@ class SKController extends Controller
 
     public function store(Request $request)
     {
-    // dd($request);
+    //dd($request);
     $this->validate($request, [
-        //'user_id' => 'required',
+        'user_id' => 'required',
         'sk1' => 'required',
         'sk2' => 'required',
         'sk3' => 'required',
@@ -37,7 +37,7 @@ class SKController extends Controller
     ]);
 
     sk::create([
-    //'user_id' => $request->user_id,
+    'user_id' => $request->user_id,
     'sk1' => $request->sk1,
     'sk2' => $request->sk2,
     'sk3' => $request->sk3,
@@ -76,7 +76,7 @@ class SKController extends Controller
         DB::table('s_k_s')->where('id', $request->id)->update([
 
             'id' => $request->id,
-            //'user_id' => $request->user_id,
+            'user_id' => $request->user_id,
             'sk1' => $request->sk1,
             'sk2' => $request->sk2,
             'sk3' => $request->sk3,

@@ -14,10 +14,11 @@ class ProdukPenjualController extends Controller
 {
     public function index()
     {
-        $user = user::where('role','2')->get();
-        $category = category::all();
-        $produkpenjual = produkpenjual::get();
-        return view('suplier.produkpenjual.produkpenjual',['produkpenjual' => $produkpenjual, 'user' => $user, 'category' => $category]);
+        if (Auth::user()) {
+            $produkpenjual = produkpenjual::where('user_id', Auth::user()->id)->get();
+            $category = category::all();
+        }
+        return view('suplier.produkpenjual.produkpenjual',['produkpenjual' => $produkpenjual,'category' => $category]);
     }
 
     public function store(Request $request)
