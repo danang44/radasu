@@ -208,16 +208,8 @@
             <div class="modal-body">
                 <form action="/Sk_store" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                    <div class="form-group">
-                        <label>Nama</label>
-                        <select id="user_id" name="user_id" class=" col-md-4 form-control form-control-select2" data-container-css-class="border-teal" data-dropdown-css-class="border-teal" required>
-                            <option value=>-- Pilih user --</option>
-                            @foreach($user as $k)
-                            <option value="{{$k->id}}">{{$k->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
                     <input type="hidden" id="id" name="id">
+                    <input type="hidden" value="{{Auth::id()}}" name="user_id">
                     <div class="form-group">
                         <label>SK1</label>
                         <input type="text" required="required" class="form-control" name="sk1" id="sk1">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Suplier;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\SK;
 use App\user;
@@ -11,14 +12,15 @@ class SKController extends Controller
 {
     public function index()
     {
-        $user = user::where('role','2')->get();
-        $SK = SK::get();
-        return view('Suplier.Sk.Sk',['SK' => $SK, 'user' => $user]);
+        if (Auth::user()) {
+            $SK = SK::where('user_id', Auth::user()->id)->get();
+        }
+        return view('Suplier.Sk.Sk',['SK' => $SK]);
     }
 
     public function store(Request $request)
     {
-    // dd($request);
+    //dd($request);
     $this->validate($request, [
         'user_id' => 'required',
         'sk1' => 'required',
@@ -74,7 +76,7 @@ class SKController extends Controller
         DB::table('s_k_s')->where('id', $request->id)->update([
 
             'id' => $request->id,
-            //'user_id' => $request->user_id,
+            'user_id' => $request->user_id,
             'sk1' => $request->sk1,
             'sk2' => $request->sk2,
             'sk3' => $request->sk3,
