@@ -71,6 +71,7 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function (
 Route::group(['middleware' => 'App\Http\Middleware\PenjualMiddleware'], function () {
 
     Route::get('/home_supplier', 'Suplier\HomeController@index')->name('home_supplier');
+    Route::get('/persetujuan', 'Suplier\HomeController@persetujuan')->name('persetujuan');
 
     // SK
     Route::get('/sk', 'Suplier\SkController@index');
@@ -94,4 +95,4 @@ Route::group(['middleware' => 'App\Http\Middleware\PenyewaMiddleware'], function
 
 // Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+//  Route::get('/home', 'HomeController@index')->name('home');
