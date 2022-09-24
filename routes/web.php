@@ -79,7 +79,7 @@ Route::group(['middleware' => 'App\Http\Middleware\PenjualMiddleware'], function
     Route::get('/sk_edit/{id}', 'Suplier\SkController@edit')->name('sk_edit');
     Route::post('/sk_update', 'Suplier\SkController@update');
     Route::delete('/Sk/delete', 'Suplier\SkController@destroy')->name('Sk/delete');
-   
+
     // ProdukPenjual
     Route::get('/PP', 'Suplier\ProdukPenjualController@index');
     Route::post('/PP_store', 'Suplier\ProdukPenjualController@store');
@@ -91,6 +91,7 @@ Route::group(['middleware' => 'App\Http\Middleware\PenjualMiddleware'], function
 Route::group(['middleware' => 'App\Http\Middleware\PenyewaMiddleware'], function () {
 
     Route::get('/home_user', 'User\HomeController@index')->name('home_user');
+    Route::post('/cartstore', 'User\CartController@store')->name('cart.store');
 });
 
 // Auth::routes();

@@ -249,7 +249,7 @@
 
                                             <form class="card__icon" action="{{ route('cart.store') }}" method="POST">
                                                 @csrf
-                                                <input type="hidden" name="product_id" value={{ $m->id }}>
+                                                <input type="hidden" name="produkpenjual_id" value={{ $m->id }}>
                                                 <button type="submit" class="  btn p-0">
                                                     <i class="fa fa-cart-plus"></i>
                                                 </button>
