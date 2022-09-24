@@ -17,9 +17,9 @@ class CreateDetailsTable extends Migration
             $table->id();
             $table->string('keranjang_id');
             $table->string('produkpenjual_id');
-            $table->string('qty');
-            $table->string('harga');
-            $table->string('subtotal');
+            $table->string('qty')->nullable();
+            $table->string('harga')->nullable();
+            $table->string('subtotal')->nullable();
             $table->timestamps();
         });
     }

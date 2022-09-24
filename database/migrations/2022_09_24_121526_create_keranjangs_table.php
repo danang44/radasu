@@ -16,13 +16,13 @@ class CreateKeranjangsTable extends Migration
         Schema::create('keranjangs', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
-            $table->string('total');
-            $table->string('ongkir');
-            $table->string('grand_total');
-            $table->string('status');
-            $table->string('start_date');
-            $table->string('end_date');
-            $table->string('denda');
+            $table->string('total')->nullable();
+            $table->string('ongkir')->nullable();
+            $table->string('grand_total')->nullable();
+            $table->string('status')->nullable();
+            $table->string('start_date')->nullable();
+            $table->string('end_date')->nullable();
+            $table->string('denda')->nullable();
             $table->timestamps();
         });
     }
