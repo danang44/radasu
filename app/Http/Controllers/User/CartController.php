@@ -39,10 +39,13 @@ class CartController extends Controller
         }
         // cek dulu apakah sudah ada product di shopping cart
         $cekdetail = detail::where('keranjang_id', $itemcart->id)
-            ->where('productpenjual_id', $produkpenjual->id);
+            ->where('produkpenjual_id', $produkpenjual->id)->first();
+        // dd($cekdetail);
         // diskon diambil kalo product itu ada promo, cek materi sebelumnya
         if ($cekdetail) {
             // update detail di table cart_detail
+            // $qty = '1';
+            // $harga = $produkpenjual->harga;
             // $cekdetail->updatedetail($cekdetail, $qty, $harga);
             // update subtotal dan total di table cart
             //$cekdetail->cart->updatetotal($cekdetail->cart, $subtotal);
@@ -55,7 +58,6 @@ class CartController extends Controller
             $inputan['subtotal'] = $produkpenjual->harga;
             $itemdetail = detail::create($inputan);
             // update subtotal dan total di table 
-            $itemdetail->status = 'cart';
             $itemdetail->update();
         }
         return back();

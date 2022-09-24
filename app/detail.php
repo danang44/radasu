@@ -18,10 +18,10 @@ class detail extends Model
     {
         return $this->belongsTo('App\produkpenjual', 'produkpenjual_id');
     }
-    public function updatedetail($itemdetail, $qty, $harga)
+    public function updatedetail($cekdetail, $qty, $harga)
     {
-        $this->attributes['qty'] = $itemdetail->qty + $qty;
-        $this->attributes['subtotal'] = $itemdetail->subtotal + (($qty * $harga));
+        $this->attributes['qty'] = $cekdetail->qty + $qty;
+        $this->attributes['subtotal'] = $cekdetail->subtotal + (($qty * $harga));
         self::save();
     }
 }

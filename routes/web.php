@@ -89,8 +89,8 @@ Route::group(['middleware' => 'App\Http\Middleware\PenjualMiddleware'], function
 });
 
 Route::group(['middleware' => 'App\Http\Middleware\PenyewaMiddleware'], function () {
-
-    Route::get('/home_user', 'User\HomeController@index')->name('home_user');
+    Route::livewire('/home_user', 'home')->name('home_user');
+    // Route::get('/home_user', 'User\HomeController@index')->name('home_user');
     Route::post('/cartstore', 'User\CartController@store')->name('cart.store');
 });
 
