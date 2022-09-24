@@ -246,7 +246,15 @@
                                     <div class="member-detail">
                                         <div class="social">
                                             <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
+
+                                            <form class="card__icon" action="{{ route('cart.store') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value={{ $m->id }}>
+                                                <button type="submit" class="  btn p-0">
+                                                    <i class="fa fa-cart-plus"></i>
+                                                </button>
+                                            </form>
+
                                             <!-- <a href="/produk_detail/{{ $m->nama }}"><i class="fa fa-circle-info"></i></a> -->
                                         </div>
                                     </div>
@@ -257,7 +265,7 @@
                     @endforeach
                 </div>
                 <div class="form-group mb-2" style="margin:auto">
-                     <button class="btn btn-secondary text-center"><a href="#" style="text-decoration:none; color:white;"> -->
+                    <button class="btn btn-secondary text-center"><a href="#" style="text-decoration:none; color:white;"> -->
                             Show more</a>
                     </button>
                 </div>
